@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Supplements | {{ gym_name }}{% endblock %}
+{% block content %}
+<section class="section page-head"><h1>Supplements</h1><p class="lead">Sold at the front desk. Ask a coach which one fits your goal before you buy.</p></section>
+<section class="section">
+  <div class="filters">
+    {% for c in categories %}<a href="{{ url_for('supplements', category=c) }}" class="chip {% if c == selected %}active{% endif %}">{{ c }}</a>{% endfor %}
+  </div>
+  <div class="grid four">{% for s in items %}{% include "_product.html" %}{% endfor %}</div>
+</section>
+{% endblock %}

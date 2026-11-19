@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Lift heavier.<br>Recover smarter.</h1>
+  <p class="lead">Coached strength training, group classes and a supplements counter under one roof. Your first session is free.</p>
+  <div class="actions"><a class="btn" href="{{ url_for('contact') }}">Book a free trial</a><a class="btn btn-ghost" href="{{ url_for('services') }}">See all services</a></div>
+  <div class="barbell" aria-hidden="true"><span class="plate p3"></span><span class="plate p2"></span><span class="plate p1"></span><span class="bar"></span><span class="plate p1"></span><span class="plate p2"></span><span class="plate p3"></span></div>
+</section>
+
+<section class="section">
+  <h2>What we offer</h2>
+  <div class="grid">
+    {% for s in services %}<article class="card"><span class="icon">{{ s.icon }}</span><h3>{{ s.name }}</h3><p>{{ s.text }}</p></article>{% endfor %}
+  </div>
+  <p class="more"><a href="{{ url_for('services') }}">View every service</a></p>
+</section>
+
+<section class="section band">
+  <h2>Membership plans</h2>
+  <div class="grid plans">
+    {% for p in plans %}
+    <article class="plan {% if p.featured %}featured{% endif %}">
+      <h3>{{ p.name }}</h3>
+      <p class="price">₹{{ '{:,}'.format(p.price) }}<small> / {{ p.period }}</small></p>
+      <ul>{% for f in p.features %}<li>{{ f }}</li>{% endfor %}</ul>
+      <a class="btn {% if not p.featured %}btn-ghost{% endif %}" href="{{ url_for('contact') }}">Join {{ p.name }}</a>
+    </article>{% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <h2>Meet your coaches</h2>
+  <div class="grid">
+    {% for t in trainers %}<article class="card"><h3>{{ t.name }}</h3><p class="role">{{ t.role }}</p><p>{{ t.bio }}</p></article>{% endfor %}
+  </div>
+</section>
+
+<section class="section band">
+  <h2>Supplements counter</h2>
+  <div class="grid four">
+    {% for s in supplements %}{% include "_product.html" %}{% endfor %}
+  </div>
+  <p class="more"><a href="{{ url_for('supplements') }}">Shop all supplements</a></p>
+</section>
+{% endblock %}

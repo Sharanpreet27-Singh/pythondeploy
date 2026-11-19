@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Book a free trial | {{ gym_name }}{% endblock %}
+{% block content %}
+<section class="section page-head"><h1>Book a free trial</h1><p class="lead">Tell us your goal and we will call you to fix a time.</p></section>
+<section class="section">
+  <form method="post" class="form">
+    <label>Name<input name="name" value="{{ form.get('name','') }}" required></label>
+    <label>Phone<input name="phone" type="tel" value="{{ form.get('phone','') }}" required></label>
+    <label>Your goal<textarea name="message" rows="4" required>{{ form.get('message','') }}</textarea></label>
+    <button class="btn" type="submit">Send request</button>
+  </form>
+</section>
+{% endblock %}

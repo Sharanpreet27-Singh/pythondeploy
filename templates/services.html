@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Services | {{ gym_name }}{% endblock %}
+{% block content %}
+<section class="section page-head"><h1>Services</h1><p class="lead">Everything you need to train, eat and recover well.</p></section>
+<section class="section"><div class="grid">
+  {% for s in services %}<article class="card"><span class="icon">{{ s.icon }}</span><h3>{{ s.name }}</h3><p>{{ s.text }}</p></article>{% endfor %}
+</div></section>
+<section class="section band"><h2>Our coaches</h2><div class="grid">
+  {% for t in trainers %}<article class="card"><h3>{{ t.name }}</h3><p class="role">{{ t.role }}</p><p>{{ t.bio }}</p></article>{% endfor %}
+</div></section>
+{% endblock %}
